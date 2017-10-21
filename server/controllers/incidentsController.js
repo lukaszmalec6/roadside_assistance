@@ -65,4 +65,5 @@ module.exports = {
         res.send("Successfully deleted");
       }
     });
-  };
+  }
+};
