@@ -27,7 +27,7 @@ db.connect(function(error) {
 });
 
 /**---------------------------------------------------------------------------------
- *         API ENDPOINTS
+ *         API ENDPOINTS - DRIVERS
     --------------------------------------------------------------------------------*/
 
 router.get("/", (req, res) => {
@@ -49,17 +49,14 @@ router.post("/drivers", (req, res) => {
   );
 });
 router.get("/drivers", (req, res) => {
-  db.query(
-    "SELECT drivers.firstname, drivers.secondname FROM drivers",
-    (err, rows) => {
-      if (err) {
-        console.log(err.message);
-        res.status(400).send("Drivers fetching failed.");
-      } else {
-        res.send(rows);
-      }
+  db.query("SELECT * FROM drivers", (err, rows) => {
+    if (err) {
+      console.log(err.message);
+      res.status(400).send("Drivers fetching failed.");
+    } else {
+      res.send(rows);
     }
-  );
+  });
 });
 router.get("/drivers/:id", (req, res) => {
   db.query(
@@ -89,9 +86,44 @@ router.get("/drivers/:id/cars", (req, res) => {
     }
   );
 });
+router.put("/drivers/:id", (req, res) => {
+  var pass = crypto.createHmac("sha256", req.body.password).digest("hex");
+  db.query(
+    "UPDATE  drivers SET firstname=?, secondname=?, login=?, password=? WHERE drivers.id=?",
+    [
+      req.body.firstname,
+      req.body.secondname,
+      req.body.login,
+      pass,
+      req.params.id
+    ],
+    err => {
+      if (err) {
+        console.log(err.message);
+        res.status(400).send("Driver udpating failed.");
+      } else {
+        res.send("Driver has been updated.");
+      }
+    }
+  );
+});
+
+router.delete("/drivers/:id", (req, res) => {
+  db.query("DELETE FROM drivers WHERE id=?", [req.params.id], err => {
+    if (err) {
+      console.log(err.message);
+      res.status(400).send("Deleting failed.");
+    } else {
+      res.send("Successfully deleted");
+    }
+  });
+});
+/**---------------------------------------------------------------------------------
+ *         API ENDPOINTS - CARS
+    --------------------------------------------------------------------------------*/
 router.get("/cars", (req, res) => {
   db.query(
-    "SELECT cars.brand, cars.type, drivers.firstname, drivers.secondname FROM cars JOIN drivers ON cars.owner=drivers.id",
+    "SELECT cars.id, cars.brand, cars.type, drivers.firstname, drivers.secondname FROM cars JOIN drivers ON cars.owner=drivers.id",
     (err, rows) => {
       if (err) {
         console.log(err.message);
@@ -130,7 +162,34 @@ router.post("/cars", (req, res) => {
     }
   );
 });
+router.put("/cars/:id", (req, res) => {
+  db.query(
+    "UPDATE cars SET brand=?, type=?  WHERE cars.id=?",
+    [req.body.brand, req.body.type, req.params.id],
+    (err, rows) => {
+      if (err) {
+        console.log(err.message);
+        res.status(400).send("Car updating failed");
+      } else {
+        res.send("Car has been updated");
+      }
+    }
+  );
+});
 
+router.delete("/cars/:id", (req, res) => {
+  db.query("DELETE FROM cars WHERE id=?", [req.params.id], err => {
+    if (err) {
+      console.log(err.message);
+      res.status(400).send("Deleting failed.");
+    } else {
+      res.send("Successfully deleted");
+    }
+  });
+});
+/**---------------------------------------------------------------------------------
+ *         API ENDPOINTS - INCIDENTS
+    --------------------------------------------------------------------------------*/
 router.post("/incidents", (req, res) => {
   db.query(
     "INSERT INTO incidents values (null,?,?,?)",
@@ -188,6 +247,17 @@ router.get("/incidents/:id", (req, res) => {
       }
     }
   );
+});
+
+router.delete("/incidents/:id", (req, res) => {
+  db.query("DELETE FROM incidents WHERE id=?", [req.params.id], err => {
+    if (err) {
+      console.log(err.message);
+      res.status(400).send("Deleting failed.");
+    } else {
+      res.send("Successfully deleted");
+    }
+  });
 });
 /**---------------------------------------------------------------------------------
  *         LOGIN
