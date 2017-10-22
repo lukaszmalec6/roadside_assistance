@@ -61,7 +61,6 @@ module.exports = {
     );
   },
   setAsProcessed: (req, res) => {
-    console.log("setasprocessed");
     db.query(
       "UPDATE incidents SET processed = 1 WHERE incidents.id=?",
       [req.params.id],

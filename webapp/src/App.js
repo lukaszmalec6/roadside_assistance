@@ -35,6 +35,16 @@ class App extends Component {
             <GoTools style={{ marginBottom: "8px", marginRight: "3px" }} /> CARS
           </a>
         </Menu>
+        <div
+          className="container"
+          style={{
+            marginBottom: "-100px",
+            marginRight: "auto",
+            marginLeft: "auto"
+          }}
+        >
+          <img src="/top.png" />
+        </div>
         <Router history={browserHistory}>
           <Route path="/" component={Dashboard} />
           <Route path="/cars" component={Cars} />

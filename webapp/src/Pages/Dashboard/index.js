@@ -25,7 +25,9 @@ var api = new ApiService();
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = { showModal: false };
+    this.state = {
+      showModal: false
+    };
     api.subscribeToTimer(() => {
       this.props.loadLiveIncidents();
       this.setState({ showModal: true });
@@ -44,10 +46,6 @@ class Dashboard extends Component {
 
   close = () => {
     this.setState({ showModal: false });
-  };
-
-  open = () => {
-    this.setState({ showModal: true });
   };
 
   markasprocessed = id => {
@@ -87,14 +85,16 @@ class Dashboard extends Component {
             </Modal.Footer>
           </Modal>
           <PageHeader>
-            <GoInfo color="lightblue" />
-            <OverlayTrigger
-              trigger="click"
-              placement="right"
-              overlay={popoverTop}
-            >
-              <Button>Check info</Button>
-            </OverlayTrigger>
+            <div>
+              <GoInfo color="lightblue" />
+              <OverlayTrigger
+                trigger="click"
+                placement="right"
+                overlay={popoverTop}
+              >
+                <Button>Check info</Button>
+              </OverlayTrigger>
+            </div>
           </PageHeader>
           <FlipMove duration={150} easing="ease">
             {this.props.incidents.map((incident, index) => (
