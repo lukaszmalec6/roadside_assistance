@@ -1,8 +1,10 @@
 import {
   FETCH_DRIVERS,
+  FETCH_DRIVER_DETAILS,
   FETCH_CARS,
   FETCH_INCIDENTS,
-  FETCH_NEW_INCIDENTS
+  FETCH_NEW_INCIDENTS,
+  FETCH_INCIDENT
 } from "./const";
 
 export const fetchDrivers = () => {
@@ -10,6 +12,7 @@ export const fetchDrivers = () => {
     type: FETCH_DRIVERS
   };
 };
+
 export const fetchCars = () => {
   return {
     type: FETCH_CARS
@@ -18,6 +21,13 @@ export const fetchCars = () => {
 export const fetchIncidents = () => {
   return {
     type: FETCH_INCIDENTS
+  };
+};
+export const fetchIncident = id => {
+  console.log(id);
+  return {
+    type: FETCH_INCIDENT,
+    id
   };
 };
 

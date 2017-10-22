@@ -10,4 +10,12 @@ export default class ApiService {
   subscribeToTimer = cb => {
     socket.on("fetchAccident", cb);
   };
+  deleteIncident = id => {
+    return axios
+      .delete(url + "/incidents/" + id)
+      .then(response => response.data);
+  };
+  markIncidentAsRead = id => {
+    return axios.put(url + "/incidents/" + id).then(response => response.data);
+  };
 }

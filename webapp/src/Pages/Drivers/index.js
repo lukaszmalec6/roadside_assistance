@@ -1,29 +1,39 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchDrivers } from "../../Actions/actions";
+import { Grid, Row, Col, Panel, ButtonToolbar, Button } from "react-bootstrap";
+import "../../theme.css";
+import FlipMove from "react-flip-move";
 class Drivers extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
   componentWillMount() {
     this.props.loadDrivers();
   }
 
   render() {
     return (
-      <div>
-        <h3>Welcome,dude</h3>
-        <h2>Drivers:</h2>
-        {this.props.drivers.map((driver, index) => (
-          <div key={index}>
-            <p>
-              {driver.firstname + " "}
-              {driver.secondname}
-            </p>
-          </div>
-        ))}
-      </div>
+      <Grid>
+        <Row className="show-grid" style={{ marginTop: "100px" }}>
+          <h3>Drivers:</h3>
+          <FlipMove duration={150} easing="ease">
+            {this.props.drivers.map((driver, index) => (
+              <Panel key={index} bsStyle="info">
+                <div className="card-body">
+                  <h3 className="card-title">
+                    {driver.firstname + " "}
+                    {driver.secondname + " "}
+                  </h3>
+
+                  <ButtonToolbar>
+                    <Button bsStyle="warning">Update</Button>
+                    <Button bsStyle="info">Delete</Button>
+                    <Button bsStyle="success">Viev info</Button>
+                  </ButtonToolbar>
+                </div>
+              </Panel>
+            ))}
+          </FlipMove>
+        </Row>
+      </Grid>
     );
   }
 }

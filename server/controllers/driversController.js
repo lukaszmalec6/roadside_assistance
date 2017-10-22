@@ -2,7 +2,7 @@ var db = require("../dbConnection");
 const crypto = require("crypto");
 module.exports = {
   getDrivers: (req, res) => {
-    db.query("SELECT * FROM drivers", (err, rows) => {
+    db.query("SELECT *FROM drivers", (err, rows) => {
       if (err) {
         console.log(err.message);
         res.status(400).send("Drivers fetching failed.");

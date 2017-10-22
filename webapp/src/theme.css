@@ -1,0 +1,23 @@
+body {
+  margin: 0px;
+}
+
+.link-3 {
+  transition: 0.4s;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 20px 10px;
+  margin: 0 10px;
+}
+.link-3:hover {
+  color: #eea200;
+  text-decoration: none;
+}
+.modal-container {
+  position: relative;
+}
+.modal-container .modal,
+.modal-container .modal-backdrop {
+  position: absolute;
+}
