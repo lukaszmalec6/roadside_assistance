@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql");
-const crypto = require("crypto");
 var bodyParser = require("body-parser");
 var multer = require("multer");
 var upload = multer();
@@ -45,6 +44,7 @@ router.delete("/cars/:id", carsCtrl.deleteCar);
  *         API ENDPOINTS - INCIDENTS
     --------------------------------------------------------------------------------*/
 const incidentsCtrl = require("./controllers/incidentsController");
+router.get("/liveincidents", incidentsCtrl.getLiveIncidents);
 router.post("/incidents", incidentsCtrl.addIncident);
 router.put("/incidents/:id", incidentsCtrl.setAsProcessed);
 router.get("/incidents", incidentsCtrl.getIncidents);
@@ -54,5 +54,6 @@ router.delete("/incidents/:id", incidentsCtrl.deleteIncident);
  *         LOGIN
     --------------------------------------------------------------------------------*/
 const authCtrl = require("./controllers/authController");
+// for mobile app users
 router.post("/login", authCtrl.login);
 module.exports = router;

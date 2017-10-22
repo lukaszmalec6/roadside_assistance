@@ -1,11 +1,11 @@
 var db = require("../dbConnection");
-
+const crypto = require("crypto");
 module.exports = {
   login: (req, res) => {
     console.log(req.body);
     var pass = crypto.createHmac("sha256", req.body.password).digest("hex");
     db.query(
-      "SELECT administrators.login, administrators.password FROM administrators WHERE login=? AND password=?",
+      "SELECT drivers.login, drivers.password FROM drivers WHERE login=? AND password=?",
       [req.body.login, pass],
       (err, rows) => {
         if (err) {

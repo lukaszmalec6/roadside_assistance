@@ -1,7 +1,8 @@
 var db = require("../dbConnection");
-
+const crypto = require("crypto");
 module.exports = {
   addIncident: (req, res) => {
+    console.log("accident");
     db.query(
       "INSERT INTO incidents values (null,?,?,?)",
       [new Date(), 0, req.body.car],
@@ -24,6 +25,23 @@ module.exports = {
           res.status(400).send("Incident fetching failed.");
         } else {
           res.send(rows);
+        }
+      }
+    );
+  },
+  getLiveIncidents: (req, res) => {
+    db.query(
+      "SELECT drivers.firstname, drivers.secondname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN drivers ON cars.owner = drivers.id",
+      (err, rows) => {
+        if (err) {
+          console.log(err.message);
+          res.status(400).send("Incident fetching failed.");
+        } else {
+          res.send([
+            rows[rows.length - 1],
+            rows[rows.length - 2],
+            rows[rows.length - 3]
+          ]);
         }
       }
     );

@@ -1,19 +1,19 @@
 const initial = {
-  drivers: [],
+  cars: [],
   error: false
 };
-const drivers = (state = initial, action) => {
+const cars = (state = initial, action) => {
   switch (action.type) {
-    case "FETCH_DRIVERS":
+    case "FETCH_CARS":
       return {
         ...state
       };
-    case "FETCH_DRIVERS_SUCCESS":
+    case "FETCH_CARS_SUCCESS":
       return {
         ...state,
-        drivers: action.data
+        cars: action.data
       };
-    case "FETCH_DRIVERS_FAIL":
+    case "FETCH_CARS_FAIL":
       return {
         ...state,
         error: true
@@ -23,4 +23,4 @@ const drivers = (state = initial, action) => {
   }
 };
 
-export default drivers;
+export default cars;

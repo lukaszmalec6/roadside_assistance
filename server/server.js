@@ -1,9 +1,9 @@
 "use strict";
 
-var express = require("express");
-var bodyParser = require("body-parser");
-var http = require("http");
-
+const express = require("express");
+const bodyParser = require("body-parser");
+const http = require("http");
+const io = require("socket.io")();
 const app = express();
 
 const port = process.env.PORT || "3001";
@@ -29,6 +29,17 @@ app.use((req, res, next) => {
 });
 const api = require("./api");
 app.use("/api", api);
+
+io.on("connection", client => {
+  client.on("accident", function() {
+    io.emit("fetchAccident");
+    client.on;
+  });
+});
+
+const ioport = 8000;
+io.listen(ioport);
+console.log("listening on port ", ioport);
 
 const server = http.createServer(app);
 server.listen(port, () => console.log(`API running on localhost:${port}`));
