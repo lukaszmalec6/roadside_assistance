@@ -1,11 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchIncidents } from "../../Actions/actions";
-import { Grid, Row, Col, Panel, ButtonToolbar, Button } from "react-bootstrap";
+import {
+  Grid,
+  Row,
+  Col,
+  Panel,
+  ButtonToolbar,
+  Button,
+  PageHeader
+} from "react-bootstrap";
 import FlipMove from "react-flip-move";
 import ApiService from "../../ApiService";
 import { Link } from "react-router";
 import "../../theme.css";
+import TiTrash from "react-icons/lib/ti/trash";
+import TiInfoOutline from "react-icons/lib/ti/info-outline";
+import TiInputChecked from "react-icons/lib/ti/input-checked";
+
 var api = new ApiService();
 class Incidents extends Component {
   componentWillMount() {
@@ -29,7 +41,9 @@ class Incidents extends Component {
     return (
       <Grid>
         <Row className="show-grid" style={{ marginTop: "100px" }}>
-          <h3>Incident's archieve</h3>
+          <PageHeader>
+            <h3>Incident's archieve</h3>
+          </PageHeader>
           <FlipMove duration={150} easing="ease">
             {this.props.incidents.map((incident, index) => (
               <Panel
@@ -42,29 +56,33 @@ class Incidents extends Component {
                 bsStyle={incident.processed ? "info" : "danger"}
               >
                 <div className="card-body">
-                  <h3 className="card-title">
+                  <h2 className="card-title">
                     {incident.firstname + " "}
                     {incident.secondname + " "}
-                  </h3>
-                  <h4 className="card-text">Had an accident</h4>
-                  <ButtonToolbar>
+                  </h2>
+                  <h3 className="card-text">Had an accident</h3>
+                  <ButtonToolbar style={{ marginTop: "20px" }}>
                     <Button
+                      disabled={incident.processed}
                       bsStyle="warning"
+                      bsSize="large"
                       onClick={() => this.markasprocessed(incident.id)}
                     >
-                      Got it!
+                      <TiInputChecked color="white" size={30} />Got it!
                     </Button>
                     <Button
                       bsStyle="info"
+                      bsSize="large"
                       onClick={() => this.erase(incident.id)}
                     >
-                      Delete
+                      <TiTrash color="white" size={30} /> Delete
                     </Button>
                     <Button
                       bsStyle="success"
+                      bsSize="large"
                       href={"/incidents/" + incident.id}
                     >
-                      Viev info
+                      <TiInfoOutline color="white" size={30} /> Viev info
                     </Button>
                   </ButtonToolbar>
                 </div>

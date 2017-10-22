@@ -2,15 +2,34 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchNewIncidents } from "../../Actions/actions";
 import ApiService from "../../ApiService";
-import { Grid, Row, Col, Panel, ButtonToolbar, Button } from "react-bootstrap";
+import GoInfo from "react-icons/lib/go/info";
+import TiTrash from "react-icons/lib/ti/trash";
+import TiInfoOutline from "react-icons/lib/ti/info-outline";
+import TiInputChecked from "react-icons/lib/ti/input-checked";
+import TiWarning from "react-icons/lib/ti/warning";
+import {
+  Grid,
+  Row,
+  Col,
+  Panel,
+  ButtonToolbar,
+  Button,
+  PageHeader,
+  Modal,
+  Popover,
+  OverlayTrigger
+} from "react-bootstrap";
 import "../../theme.css";
 import FlipMove from "react-flip-move";
 var api = new ApiService();
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    api.subscribeToTimer(() => this.props.loadLiveIncidents());
+    this.state = { showModal: false };
+    api.subscribeToTimer(() => {
+      this.props.loadLiveIncidents();
+      this.setState({ showModal: true });
+    });
   }
   componentWillMount() {
     this.props.loadLiveIncidents();
@@ -22,6 +41,15 @@ class Dashboard extends Component {
       }
     });
   };
+
+  close = () => {
+    this.setState({ showModal: false });
+  };
+
+  open = () => {
+    this.setState({ showModal: true });
+  };
+
   markasprocessed = id => {
     console.log(id);
     api.markIncidentAsRead(id).then(response => {
@@ -31,10 +59,43 @@ class Dashboard extends Component {
     });
   };
   render() {
+    const popoverTop = (
+      <Popover id="popover-positioned-right" title="Info">
+        <h5>
+          Dashboard shows the last 3 alarms about accidents. When a new alarm
+          arrives, you will be informed immediately.{" "}
+        </h5>
+        <h5>
+          Use the buttons to mark the alarm as received, delete it, or view
+          information.
+        </h5>
+      </Popover>
+    );
     return (
       <Grid>
         <Row className="show-grid" style={{ marginTop: "100px" }}>
-          <h3>This page contains current information about the incidents</h3>
+          <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton>
+              <Modal.Title>ACCIDENT!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <TiWarning color="red" size={35} />
+              <h4>Check dashboard for more informations.</h4>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+          <PageHeader>
+            <GoInfo color="lightblue" />
+            <OverlayTrigger
+              trigger="click"
+              placement="right"
+              overlay={popoverTop}
+            >
+              <Button>Check info</Button>
+            </OverlayTrigger>
+          </PageHeader>
           <FlipMove duration={150} easing="ease">
             {this.props.incidents.map((incident, index) => (
               <Panel
@@ -52,24 +113,28 @@ class Dashboard extends Component {
                     {incident.secondname + " "}
                   </h3>
                   <h4 className="card-text">just had an accident!</h4>
-                  <ButtonToolbar>
+                  <ButtonToolbar style={{ marginTop: "20px" }}>
                     <Button
+                      disabled={incident.processed}
                       bsStyle="warning"
+                      bsSize="large"
                       onClick={() => this.markasprocessed(incident.id)}
                     >
-                      Got it!
+                      <TiInputChecked color="white" size={30} />Got it!
                     </Button>
                     <Button
                       bsStyle="info"
+                      bsSize="large"
                       onClick={() => this.erase(incident.id)}
                     >
-                      Delete
+                      <TiTrash color="white" size={30} /> Delete
                     </Button>
                     <Button
                       bsStyle="success"
+                      bsSize="large"
                       href={"/incidents/" + incident.id}
                     >
-                      Viev info
+                      <TiInfoOutline color="white" size={30} /> Viev info
                     </Button>
                   </ButtonToolbar>
                 </div>

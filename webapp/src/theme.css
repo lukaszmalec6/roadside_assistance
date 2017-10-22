@@ -3,6 +3,7 @@ body {
 }
 
 .link-3 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: 0.4s;
   color: #ffffff;
   font-size: 20px;

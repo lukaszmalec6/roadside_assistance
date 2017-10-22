@@ -7,6 +7,10 @@ import Drivers from "./Pages/Drivers";
 import Incidents from "./Pages/Incidents";
 import { slide as Menu } from "react-burger-menu";
 import Incident from "./Pages/Incident";
+import GoGraph from "react-icons/lib/go/graph";
+import GoAlert from "react-icons/lib/go/alert";
+import GoOrganization from "react-icons/lib/go/organization";
+import GoTools from "react-icons/lib/go/tools";
 import "./theme.css";
 class App extends Component {
   render() {
@@ -14,16 +18,21 @@ class App extends Component {
       <div>
         <Menu styles={styles}>
           <a id="dashboard" className="link-3" href="/">
+            <GoGraph style={{ marginBottom: "8px", marginRight: "3px" }} />{" "}
             DASHBOARD
           </a>
           <a id="incidents" className="link-3" href="/incidents">
+            <GoAlert style={{ marginBottom: "8px", marginRight: "3px" }} />{" "}
             INCIDENTS
           </a>
           <a id="drivers" className="link-3" href="/drivers">
+            <GoOrganization
+              style={{ marginBottom: "8px", marginRight: "3px" }}
+            />{" "}
             DRIVERS
           </a>
           <a id="cars" className="link-3" href="/cars">
-            CARS
+            <GoTools style={{ marginBottom: "8px", marginRight: "3px" }} /> CARS
           </a>
         </Menu>
         <Router history={browserHistory}>

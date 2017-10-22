@@ -48,7 +48,7 @@ module.exports = {
   },
   getIncidentByID: (req, res) => {
     db.query(
-      "SELECT incidents.latitude, incidents.longitude, drivers.firstname, drivers.secondname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN drivers ON cars.owner = drivers.id WHERE incidents.id=?",
+      "SELECT incidents.id, incidents.latitude, incidents.longitude, drivers.firstname, drivers.secondname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN drivers ON cars.owner = drivers.id WHERE incidents.id=?",
       [req.params.id],
       (err, rows) => {
         if (err) {

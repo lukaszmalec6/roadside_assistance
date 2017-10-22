@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchDrivers } from "../../Actions/actions";
-import { Grid, Row, Col, Panel, ButtonToolbar, Button } from "react-bootstrap";
+import {
+  Grid,
+  Row,
+  Col,
+  Panel,
+  ButtonToolbar,
+  Button,
+  PageHeader
+} from "react-bootstrap";
 import "../../theme.css";
 import FlipMove from "react-flip-move";
 class Drivers extends Component {
@@ -13,7 +21,10 @@ class Drivers extends Component {
     return (
       <Grid>
         <Row className="show-grid" style={{ marginTop: "100px" }}>
-          <h3>Drivers:</h3>
+          <PageHeader>
+            {" "}
+            <h3>Drivers:</h3>
+          </PageHeader>
           <FlipMove duration={150} easing="ease">
             {this.props.drivers.map((driver, index) => (
               <Panel key={index} bsStyle="info">
