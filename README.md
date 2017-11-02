@@ -5,5 +5,5 @@ Web pplication connected with arduino and mobile application, designed to detect
 
 # Steps to run
 1. clone repository
-2. cd server & npm start
+2. cd server & node server.js
 3. cd webapp & npm start
