@@ -29,6 +29,7 @@ class Dashboard extends Component {
       showModal: false
     };
     api.subscribeToTimer(() => {
+      console.log("sdsdsd");
       this.props.loadLiveIncidents();
       this.setState({ showModal: true });
     });
@@ -57,6 +58,7 @@ class Dashboard extends Component {
     });
   };
   render() {
+    let { incidents } = this.props;
     const popoverTop = (
       <Popover id="popover-positioned-right" title="Info">
         <h5>
@@ -69,6 +71,7 @@ class Dashboard extends Component {
         </h5>
       </Popover>
     );
+
     return (
       <Grid>
         <Row className="show-grid" style={{ marginTop: "100px" }}>
@@ -97,49 +100,55 @@ class Dashboard extends Component {
             </div>
           </PageHeader>
           <FlipMove duration={150} easing="ease">
-            {this.props.incidents.map((incident, index) => (
-              <Panel
-                key={index}
-                header={
-                  incident.processed
-                    ? "Accident, status: processed"
-                    : "Accident, status: not processed!"
-                }
-                bsStyle={incident.processed ? "info" : "danger"}
-              >
-                <div className="card-body">
-                  <h3 className="card-title">
-                    {incident.firstname + " "}
-                    {incident.secondname + " "}
-                  </h3>
-                  <h4 className="card-text">just had an accident!</h4>
-                  <ButtonToolbar style={{ marginTop: "20px" }}>
-                    <Button
-                      disabled={incident.processed}
-                      bsStyle="warning"
-                      bsSize="large"
-                      onClick={() => this.markasprocessed(incident.id)}
-                    >
-                      <TiInputChecked color="white" size={30} />Got it!
-                    </Button>
-                    <Button
-                      bsStyle="info"
-                      bsSize="large"
-                      onClick={() => this.erase(incident.id)}
-                    >
-                      <TiTrash color="white" size={30} /> Delete
-                    </Button>
-                    <Button
-                      bsStyle="success"
-                      bsSize="large"
-                      href={"/incidents/" + incident.id}
-                    >
-                      <TiInfoOutline color="white" size={30} /> Viev info
-                    </Button>
-                  </ButtonToolbar>
-                </div>
-              </Panel>
-            ))}
+            {incidents ? (
+              incidents.map((incident, index) => (
+                <Panel
+                  key={index}
+                  header={
+                    incident.processed
+                      ? "Accident, status: processed"
+                      : "Accident, status: not processed!"
+                  }
+                  bsStyle={incident.processed ? "info" : "danger"}
+                >
+                  <div className="card-body">
+                    <h3 className="card-title">
+                      {incident.firstname + " "}
+                      {incident.secondname + " "}
+                    </h3>
+                    <h4 className="card-text">just had an accident!</h4>
+                    <ButtonToolbar style={{ marginTop: "20px" }}>
+                      <Button
+                        disabled={incident.processed}
+                        bsStyle="warning"
+                        bsSize="large"
+                        onClick={() => this.markasprocessed(incident.id)}
+                      >
+                        <TiInputChecked color="white" size={30} />Got it!
+                      </Button>
+                      <Button
+                        bsStyle="info"
+                        bsSize="large"
+                        onClick={() => this.erase(incident.id)}
+                      >
+                        <TiTrash color="white" size={30} /> Delete
+                      </Button>
+                      <Button
+                        bsStyle="success"
+                        bsSize="large"
+                        href={"/incidents/" + incident.id}
+                      >
+                        <TiInfoOutline color="white" size={30} /> Viev info
+                      </Button>
+                    </ButtonToolbar>
+                  </div>
+                </Panel>
+              ))
+            ) : (
+              <div>
+                <h3>Nothing to show</h3>
+              </div>
+            )}
           </FlipMove>
         </Row>
       </Grid>

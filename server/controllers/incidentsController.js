@@ -31,17 +31,14 @@ module.exports = {
   },
   getLiveIncidents: (req, res) => {
     db.query(
-      "SELECT incidents.latitude, incidents.longitude, incidents.id, drivers.firstname, drivers.secondname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN drivers ON cars.owner = drivers.id",
+      "SELECT incidents.latitude, incidents.longitude, incidents.id, drivers.firstname, drivers.secondname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN drivers ON cars.owner = drivers.id LIMIT 3",
       (err, rows) => {
         if (err) {
           console.log(err.message);
           res.status(400).send("Incident fetching failed.");
         } else {
-          res.send([
-            rows[rows.length - 1],
-            rows[rows.length - 2],
-            rows[rows.length - 3]
-          ]);
+          if (rows) res.send(rows.reverse());
+          else res.send("Nothing to show");
         }
       }
     );

@@ -22,7 +22,6 @@ class Drivers extends Component {
       <Grid>
         <Row className="show-grid" style={{ marginTop: "100px" }}>
           <PageHeader>
-            {" "}
             <h3>Drivers:</h3>
           </PageHeader>
           <FlipMove duration={150} easing="ease">

@@ -12,7 +12,7 @@ app.set("port", port);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-/*      CCORS           */
+/*      CORS           */
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -27,6 +27,8 @@ app.use((req, res, next) => {
   res.setHeader("Cache-Control", "no-cache");
   next();
 });
+
+/*      LISTENIG         */
 const api = require("./api");
 app.use("/api", api);
 
@@ -39,7 +41,6 @@ io.on("connection", client => {
 
 const ioport = 8000;
 io.listen(ioport);
-console.log("listening on port ", ioport);
 
 const server = http.createServer(app);
 server.listen(port, () => console.log(`API running on localhost:${port}`));
