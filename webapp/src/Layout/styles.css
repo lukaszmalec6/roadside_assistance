@@ -1,6 +1,7 @@
 @media only screen and (max-width: 540px) {
   .header {
     background-image: url("../Assets/header_bg.png");
+
     background-repeat: no-repeat;
   }
   .header:before {
@@ -8,7 +9,7 @@
     border-right: 400px solid white;
   }
   .logotype {
-    margin-top: 30%;
+    margin-top: 20%;
   }
   .landing-nav li {
     display: none;
@@ -32,6 +33,7 @@
 @media only screen and (min-width: 541px) and (max-width: 719px) {
   .header {
     background-image: url("../Assets/header_bg_lg.png");
+
     background-repeat: no-repeat;
   }
   .header:before {
@@ -74,23 +76,34 @@
   .landing-nav li {
     display: none;
   }
+  .wrapper-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
   .login div {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
   .login {
-    flex-direction: column;
-  }
-  .login-lg {
-    display: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
   }
   .login input {
-    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
-  .login {
-    margin-top: 10px;
+  .login-sm {
+    display: none;
   }
 }
-@media only screen and (min-width: 961px) and (max-width: 1999px) {
+@media only screen and (min-width: 961px) and (max-width: 1320px) {
   .header {
     background-image: url("../Assets/header_bg_lg.png");
   }
@@ -99,7 +112,49 @@
     border-right: 1900px solid white;
   }
   .logotype {
-    margin-top: 20%;
+    margin-top: 10%;
+  }
+
+  .landing-nav li {
+    display: none;
+  }
+  .wrapper-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .login div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+  }
+  .login input {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .login-sm {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1321px) and (max-width: 1999px) {
+  .header {
+    background-image: url("../Assets/header_bg_lg.png");
+  }
+  .header:before {
+    border-top: 120px solid transparent;
+    border-right: 1900px solid white;
+  }
+  .logotype {
+    margin-top: 10%;
   }
   .hamburger {
     display: none;
@@ -130,6 +185,9 @@
   .login input {
     margin-left: 10px;
     margin-right: 10px;
+  }
+  .login-sm {
+    display: none;
   }
 }
 @media only screen and (min-width: 2000px) {
@@ -174,6 +232,9 @@
   .login input {
     margin-left: 10px;
     margin-right: 10px;
+  }
+  .login-sm {
+    display: none;
   }
 }
 .login {

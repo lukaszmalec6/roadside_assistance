@@ -15,29 +15,31 @@ export const LandingPageLayout = ({ component: Component, ...rest }) => {
   return (
     <div>
       <header className="header">
-        <div className="menu">
-          <Login />
-          <ul>
-            <li>
-              <a href="#about">Company</a>
-            </li>
-            <li>
-              <a href="#purchase">Find plan</a>
-            </li>
-            <li>
-              <a href="#payment">Payment</a>
-            </li>
-            <li>
-              <a href="#footer">Contact</a>
-            </li>
-          </ul>
-        </div>
-        <div className="hamburger">
-          <span />
-          <span />
-          <span />
-        </div>
         <div className="wrapper-header">
+          <div className="menu">
+            <span className="login-sm">
+              <Login />
+            </span>
+            <ul>
+              <li>
+                <a href="#about">Company</a>
+              </li>
+              <li>
+                <a href="#purchase">Find plan</a>
+              </li>
+              <li>
+                <a href="#payment">Payment</a>
+              </li>
+              <li>
+                <a href="#footer">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div className="hamburger">
+            <span />
+            <span />
+            <span />
+          </div>
           <nav className="landing-nav">
             <ul>
               <li>
