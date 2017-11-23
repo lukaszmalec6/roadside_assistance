@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
-import "../../../Layout/styles.css";
-import api from "../../../ApiService";
+import "../Layout/styles.css";
+import api from "../ApiService";
 import Joi from "joi";
 const escapeSpecialChars = /^[a-zA-Z0-9 ]+$/;
 const userDataSchema = Joi.object().keys({

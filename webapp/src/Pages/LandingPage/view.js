@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Payment from "./Components/paymentComponent";
-import Newsletter from "./Components/newsletter";
-import QuickContact from "./Components/quickContact";
-import Terms from "./Components/termsAndContidions";
+import Payment from "../../Components/paymentComponent";
+import Newsletter from "../../Components/newsletter";
+import QuickContact from "../../Components/quickContact";
+import Terms from "../../Components/termsAndContidions";
 import Footer from "../../Assets/footer.png";
 export default class LandingPage extends Component {
   render() {

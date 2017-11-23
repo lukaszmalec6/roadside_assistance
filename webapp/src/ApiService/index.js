@@ -13,9 +13,17 @@ ApiService.get = endpoint => {
 ApiService.subscribeToSocket = cb => {
   socket.on("fetchAccident", cb);
 };
-ApiService.deleteIncident = id => {
-  return axios.delete(url + "/incidents/" + id).then(response => response.data);
+ApiService.delete = (endpoint, id) => {
+  return axios
+    .delete(url + endpoint + "/" + id)
+    .then(response => response.data);
 };
+ApiService.put = (endpoint, id, obj) => {
+  return axios
+    .put(url + endpoint + "/" + id, obj)
+    .then(response => response.data);
+};
+
 ApiService.markIncidentAsRead = id => {
   return axios.put(url + "/incidents/" + id).then(response => response.data);
 };

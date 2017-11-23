@@ -3,6 +3,8 @@ import { drivers_watch } from "./drivers";
 import { cars_watch } from "./cars";
 import { incidents_watch } from "./incidents";
 import { incident_watch } from "./incident";
+import { car_watch } from "./car";
+import { driver_watch } from "./driver";
 import { live_incidents_watch } from "./live_incidents";
 export default function* rootSaga() {
   yield all([
@@ -10,6 +12,8 @@ export default function* rootSaga() {
     fork(cars_watch),
     fork(incidents_watch),
     fork(live_incidents_watch),
-    fork(incident_watch)
+    fork(incident_watch),
+    fork(car_watch),
+    fork(driver_watch)
   ]);
 }

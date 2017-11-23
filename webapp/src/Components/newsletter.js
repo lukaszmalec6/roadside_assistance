@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../../Layout/styles.css";
+import "../Layout/styles.css";
 
 export default class Newsletter extends Component {
   render() {

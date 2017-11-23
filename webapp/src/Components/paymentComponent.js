@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "../../../Layout/styles.css";
-import VisaLogo from "../../../Assets/visa-logo.png";
-import PayPalLogo from "../../../Assets/paypal-logo.png";
-import BitcoinLogo from "../../../Assets/bitcoin-logo.png";
-import Locked from "../../../Assets/locked.png";
-import Payment from "../../../Assets/payment.png";
+import "../Layout/styles.css";
+import VisaLogo from "../Assets/visa-logo.png";
+import PayPalLogo from "../Assets/paypal-logo.png";
+import BitcoinLogo from "../Assets/bitcoin-logo.png";
+import Locked from "../Assets/locked.png";
+import Payment from "../Assets/payment.png";
 export default class LandingPage extends Component {
   render() {
     return (

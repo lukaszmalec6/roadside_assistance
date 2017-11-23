@@ -23,7 +23,7 @@ module.exports = {
           console.log(err.message);
           res.status(400).send("Incident fetching failed.");
         } else {
-          res.send(rows.reverse());
+          res.send(rows);
         }
       }
     );
@@ -36,7 +36,7 @@ module.exports = {
           console.log(err.message);
           res.status(400).send("Incident fetching failed.");
         } else {
-          if (rows) res.send(rows.reverse());
+          if (rows) res.send(rows);
           else res.send("Nothing to show");
         }
       }

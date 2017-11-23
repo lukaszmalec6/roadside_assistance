@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 module.exports = {
   getDrivers: (req, res) => {
     db.query(
-      "SELECT u.id, u.firstname, u.lastname, r.role FROM users u JOIN role r ON u.role=r.id",
+      "SELECT u.id, u.firstname, u.lastname,u.login, r.role FROM users u JOIN role r ON u.role=r.id",
       (err, rows) => {
         if (err) {
           console.log(err.message);
@@ -16,14 +16,14 @@ module.exports = {
   },
   getDriverByID: (req, res) => {
     db.query(
-      "SELECT u.id, u.firstname, u.lastname, r.role FROM users u JOIN role r ON u.role=r.id WHERE u.id=?",
+      "SELECT u.id, u.firstname, u.lastname, u.login, r.role FROM users u JOIN role r ON u.role=r.id WHERE u.id=?",
       [req.params.id],
       (err, rows) => {
         if (err) {
           console.log(err.message);
           res.status(400).send("Driver fetching failed.");
         } else {
-          res.send(rows);
+          res.send(rows[0]);
         }
       }
     );
@@ -58,16 +58,9 @@ module.exports = {
     );
   },
   updateDriver: (req, res) => {
-    var pass = bcrypt.hashSync(req.body.password, 10);
     db.query(
-      "UPDATE  users SET firstname=?, lastname=?, login=?, password=? WHERE users.id=?",
-      [
-        req.body.firstname,
-        req.body.secondname,
-        req.body.login,
-        pass,
-        req.params.id
-      ],
+      "UPDATE  users SET firstname=?, lastname=?, login=? WHERE users.id=?",
+      [req.body.firstname, req.body.lastname, req.body.login, req.params.id],
       err => {
         if (err) {
           console.log(err.message);

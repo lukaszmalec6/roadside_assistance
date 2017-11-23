@@ -22,7 +22,7 @@ module.exports = {
           console.log(err.message);
           res.status(400).send("Car fetching failed.");
         } else {
-          res.send(rows);
+          res.send(rows[0]);
         }
       }
     );

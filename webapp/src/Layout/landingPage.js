@@ -8,7 +8,7 @@ import Accident from "../Assets/accident.png";
 import Mobile from "../Assets/mobile.png";
 import Tools from "../Assets/tools.png";
 import Payment from "../Assets/payment.png";
-import Login from "../Pages/LandingPage/Components/login";
+import Login from "../Components/login";
 import "./styles.css";
 import $ from "jquery";
 export const LandingPageLayout = ({ component: Component, ...rest }) => {
