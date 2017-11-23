@@ -1,13 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import Umbrella from "../Assets/umbrella.png";
 import Scroll from "../Assets/scroll.png";
 import Purchase from "../Assets/purchase.png";
 import Accident from "../Assets/accident.png";
 import Mobile from "../Assets/mobile.png";
 import Tools from "../Assets/tools.png";
-import Payment from "../Assets/payment.png";
 import Login from "../Components/login";
 import "./styles.css";
 import $ from "jquery";

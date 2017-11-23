@@ -38,7 +38,7 @@ export default class LandingPage extends Component {
               <h6>Card number</h6>
               <div className="input">
                 <input type="text" />
-                <img src={Locked} />
+                <img src={Locked} alt="Locked" />
               </div>
               <div className="expiry-date">
                 <h6>Expiry date</h6>
@@ -62,7 +62,7 @@ export default class LandingPage extends Component {
               <h6>Security Code</h6>
               <div className="input">
                 <input type="text" />
-                <img src={Locked} />
+                <img src={Locked} alt="Locked" />
               </div>
             </div>
             <div className="info">

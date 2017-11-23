@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import React, { Component } from "react";
+import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import TopBar from "../Components/topBar";
 import PanelSideMenu from "../Components/panelSideMenu";

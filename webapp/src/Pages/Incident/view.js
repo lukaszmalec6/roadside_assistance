@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-
-import {
-  Grid,
-  Row,
-  Col,
-  Panel,
-  ButtonToolbar,
-  Button,
-  PageHeader,
-  Jumbotron
-} from "react-bootstrap";
+import { ButtonToolbar, Button, Jumbotron } from "react-bootstrap";
 import api from "../../ApiService";
 import { Redirect } from "react-router";
 import TiArrowBackOutline from "react-icons/lib/ti/arrow-back-outline";

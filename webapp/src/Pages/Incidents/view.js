@@ -1,19 +1,12 @@
 import React, { Component } from "react";
-
 import {
-  Grid,
-  Row,
-  Col,
-  Panel,
   ButtonToolbar,
   Button,
-  PageHeader,
   ListGroup,
   ListGroupItem
 } from "react-bootstrap";
-import FlipMove from "react-flip-move";
 import api from "../../ApiService";
-import { Link } from "react-router";
+
 import "../../theme.css";
 import TiTrash from "react-icons/lib/ti/trash";
 import TiInfoOutline from "react-icons/lib/ti/info-outline";

@@ -1,21 +1,12 @@
 import React, { Component } from "react";
-
 import {
-  Grid,
-  Row,
-  Col,
-  Panel,
   ButtonToolbar,
   Button,
-  PageHeader,
   ListGroup,
   ListGroupItem
 } from "react-bootstrap";
 import "../../theme.css";
-import FlipMove from "react-flip-move";
 import TiInfoOutline from "react-icons/lib/ti/info-outline";
-import TiInputChecked from "react-icons/lib/ti/input-checked";
-import TiWarning from "react-icons/lib/ti/warning";
 import TiTrash from "react-icons/lib/ti/trash";
 import api from "../../ApiService";
 export default class Cars extends Component {
