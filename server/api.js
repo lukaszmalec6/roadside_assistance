@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 
 /**---------------------------------------------------------------------------------
  *        check database connection
-    --------------------------------------------------------------------------------*/
+ --------------------------------------------------------------------------------*/
 
 var db = require("./dbConnection");
 db.connect(function(error) {
@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 });
 /**---------------------------------------------------------------------------------
  *         API ENDPOINTS - DRIVERS
-    --------------------------------------------------------------------------------*/
+ --------------------------------------------------------------------------------*/
 const driversCtrl = require("./controllers/driversController");
 router.post("/drivers", driversCtrl.addDriver);
 router.put("/drivers/:id", driversCtrl.updateDriver);
@@ -33,7 +33,7 @@ router.get("/drivers/:id/cars", driversCtrl.getDriversCars);
 router.delete("/drivers/:id", driversCtrl.deleteDriver);
 /**---------------------------------------------------------------------------------
  *         API ENDPOINTS - CARS
-    --------------------------------------------------------------------------------*/
+ --------------------------------------------------------------------------------*/
 const carsCtrl = require("./controllers/carsController");
 router.post("/cars", carsCtrl.addCar);
 router.put("/cars/:id", carsCtrl.updateCar);
@@ -42,7 +42,7 @@ router.get("/cars/:id", carsCtrl.getCarByID);
 router.delete("/cars/:id", carsCtrl.deleteCar);
 /**---------------------------------------------------------------------------------
  *         API ENDPOINTS - INCIDENTS
-    --------------------------------------------------------------------------------*/
+ --------------------------------------------------------------------------------*/
 const incidentsCtrl = require("./controllers/incidentsController");
 router.get("/liveincidents", incidentsCtrl.getLiveIncidents);
 router.post("/incidents", incidentsCtrl.addIncident);
@@ -52,8 +52,10 @@ router.get("/incidents/:id", incidentsCtrl.getIncidentByID);
 router.delete("/incidents/:id", incidentsCtrl.deleteIncident);
 /**---------------------------------------------------------------------------------
  *         LOGIN
-    --------------------------------------------------------------------------------*/
+ --------------------------------------------------------------------------------*/
 const authCtrl = require("./controllers/authController");
-// for mobile app users
+// for drivers
+
 router.post("/login", authCtrl.login);
+
 module.exports = router;

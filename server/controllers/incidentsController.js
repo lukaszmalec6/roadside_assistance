@@ -2,7 +2,6 @@ var db = require("../dbConnection");
 const crypto = require("crypto");
 module.exports = {
   addIncident: (req, res) => {
-    console.log("accident");
     db.query(
       "INSERT INTO incidents values (null,?,?,?,?,?)",
       [new Date(), 0, req.body.car, req.body.latitude, req.body.longitude],
@@ -18,7 +17,7 @@ module.exports = {
   },
   getIncidents: (req, res) => {
     db.query(
-      "SELECT incidents.id, incidents.latitude, incidents.longitude, drivers.firstname, drivers.secondname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN drivers ON cars.owner = drivers.id",
+      "SELECT incidents.id, incidents.latitude, incidents.longitude, users.firstname AS driverFirstname, users.lastname AS driversLastname, cars.brand AS carBrand, cars.type AS carType, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN users ON cars.owner = users.id",
       (err, rows) => {
         if (err) {
           console.log(err.message);
@@ -31,7 +30,7 @@ module.exports = {
   },
   getLiveIncidents: (req, res) => {
     db.query(
-      "SELECT incidents.latitude, incidents.longitude, incidents.id, drivers.firstname, drivers.secondname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN drivers ON cars.owner = drivers.id LIMIT 3",
+      "SELECT incidents.latitude, incidents.longitude, incidents.id, users.firstname, users.lastname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN users ON cars.owner = users.id LIMIT 3",
       (err, rows) => {
         if (err) {
           console.log(err.message);
@@ -45,7 +44,7 @@ module.exports = {
   },
   getIncidentByID: (req, res) => {
     db.query(
-      "SELECT incidents.id, incidents.latitude, incidents.longitude, drivers.firstname, drivers.secondname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN drivers ON cars.owner = drivers.id WHERE incidents.id=?",
+      "SELECT incidents.id, incidents.latitude, incidents.longitude, users.firstname, users.lastname, cars.brand, cars.type, incidents.date, incidents.processed FROM incidents JOIN cars ON incidents.car=cars.id JOIN users ON cars.owner = users.id WHERE incidents.id=?",
       [req.params.id],
       (err, rows) => {
         if (err) {

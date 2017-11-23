@@ -1,9 +1,8 @@
 var db = require("../dbConnection");
-const crypto = require("crypto");
 module.exports = {
   getCars: (req, res) => {
     db.query(
-      "SELECT cars.id, cars.brand, cars.type, drivers.firstname, drivers.secondname FROM cars JOIN drivers ON cars.owner=drivers.id",
+      "SELECT cars.id, cars.brand, cars.type, users.firstname AS ownerFirstname, users.lastname AS ownerLastname, users.id AS ownerID FROM cars JOIN users ON cars.owner=users.id",
       (err, rows) => {
         if (err) {
           console.log(err.message);
@@ -16,7 +15,7 @@ module.exports = {
   },
   getCarByID: (req, res) => {
     db.query(
-      "SELECT cars.brand, cars.type, drivers.firstname, drivers.secondname FROM cars JOIN drivers ON cars.owner=drivers.id WHERE cars.id =?",
+      "SELECT cars.id, cars.brand, cars.type, users.firstname AS ownerFirstname, users.lastname AS ownerLastname, users.id AS ownerID FROM cars JOIN users ON cars.owner=users.id WHERE cars.id =?",
       [req.params.id],
       (err, rows) => {
         if (err) {
