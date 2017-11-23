@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchNewIncidents } from "../../Actions/actions";
-import ApiService from "../../ApiService";
+import api from "../../ApiService";
 import GoInfo from "react-icons/lib/go/info";
 import TiTrash from "react-icons/lib/ti/trash";
 import TiInfoOutline from "react-icons/lib/ti/info-outline";
@@ -21,15 +21,14 @@ import {
 } from "react-bootstrap";
 import "../../theme.css";
 import FlipMove from "react-flip-move";
-var api = new ApiService();
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false
     };
-    api.subscribeToTimer(() => {
-      console.log("sdsdsd");
+    api.subscribeToSocket(() => {
       this.props.loadLiveIncidents();
       this.setState({ showModal: true });
     });

@@ -11,14 +11,13 @@ import {
   PageHeader
 } from "react-bootstrap";
 import FlipMove from "react-flip-move";
-import ApiService from "../../ApiService";
+import api from "../../ApiService";
 import { Link } from "react-router";
 import "../../theme.css";
 import TiTrash from "react-icons/lib/ti/trash";
 import TiInfoOutline from "react-icons/lib/ti/info-outline";
 import TiInputChecked from "react-icons/lib/ti/input-checked";
 
-var api = new ApiService();
 class Incidents extends Component {
   componentWillMount() {
     this.props.loadIncidents();

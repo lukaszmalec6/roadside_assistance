@@ -5,11 +5,11 @@ import {
 } from "../Actions/const";
 
 import { put, takeLatest } from "redux-saga/effects";
-import ApiService from "../ApiService";
-const api = new ApiService();
+import api from "../ApiService";
+
 function* fetchIncident(action) {
   try {
-    const data = yield api.GET("/incidents/" + action.id);
+    const data = yield api.get("incidents/" + action.id);
     yield put({ type: FETCH_INCIDENT_SUCCESS, data });
   } catch (err) {
     yield put({ type: FETCH_INCIDENT_FAIL });

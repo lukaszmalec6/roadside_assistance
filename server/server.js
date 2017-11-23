@@ -36,9 +36,9 @@ io.on("connection", client => {
     client.on;
   });
 });
-
+// socket io
 const ioport = 8000;
 io.listen(ioport);
-
+// api
 const server = http.createServer(app);
 server.listen(port, () => console.log(`API running on localhost:${port}`));

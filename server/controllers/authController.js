@@ -11,7 +11,7 @@ module.exports = {
             console.log(error);
           } else {
             if (rows.length == 0) {
-              res.send("no_email");
+              res.send("Invalid data");
             } else {
               console.log(rows);
               bcrypt.compare(
@@ -26,12 +26,12 @@ module.exports = {
                       let current_user = {
                         id: rows[0].id,
                         firstname: rows[0].firstname,
-                        lastname: rows[0].secondname,
+                        lastname: rows[0].lastname,
                         login: rows[0].login,
                         role: rows[0].role
                       };
                       res.send(current_user);
-                    } else res.send("wrong_password");
+                    } else res.send("Invalid data");
                   }
                 }
               );

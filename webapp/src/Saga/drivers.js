@@ -5,11 +5,11 @@ import {
 } from "../Actions/const";
 
 import { put, takeLatest } from "redux-saga/effects";
-import ApiService from "../ApiService";
-const api = new ApiService();
+import api from "../ApiService";
+
 function* fetchDrivers(action) {
   try {
-    const data = yield api.GET("/drivers");
+    const data = yield api.get("drivers");
     yield put({ type: FETCH_DRIVERS_SUCCESS, data });
   } catch (err) {
     yield put({ type: FETCH_DRIVERS_FAIL });

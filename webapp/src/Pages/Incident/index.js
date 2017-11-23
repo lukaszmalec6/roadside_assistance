@@ -11,11 +11,10 @@ import {
   Jumbotron
 } from "react-bootstrap";
 import { fetchIncident } from "../../Actions/actions";
-import ApiService from "../../ApiService";
+import api from "../../ApiService";
 import { Redirect } from "react-router";
 import TiArrowBackOutline from "react-icons/lib/ti/arrow-back-outline";
 
-var api = new ApiService();
 class Incident extends Component {
   constructor() {
     super();
