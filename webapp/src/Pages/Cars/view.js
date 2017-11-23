@@ -31,44 +31,88 @@ export default class Cars extends Component {
   };
 
   render() {
-    return (
-      <ListGroup>
-        {this.props.cars.map((car, index) => (
-          <ListGroupItem
-            key={car.id}
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}
-          >
-            <div>
-              <h5 className="card-title">{car.brand}</h5>
-              <h5 className="card-text">Type: {car.type}</h5>
-              <h5 className="card-text">
-                Owner: {car.ownerFirstname + " " + car.ownerLastname}
-              </h5>
-            </div>
-            <ButtonToolbar>
-              <Button
-                bsStyle="primary"
-                bsSize="xsmall"
-                href={"/cars/" + car.id}
-              >
-                <TiInfoOutline color="white" size={15} /> Info
-              </Button>
-              <Button
-                bsStyle="danger"
-                bsSize="xsmall"
-                onClick={() => this.erase(car.id)}
-              >
-                <TiTrash color="white" size={15} /> Delete
-              </Button>
-            </ButtonToolbar>
-          </ListGroupItem>
-        ))}
-      </ListGroup>
-    );
+    if (this.props.permissions) {
+      return (
+        <ListGroup>
+          {this.props.cars.map((car, index) => (
+            <ListGroupItem
+              key={car.id}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center"
+              }}
+            >
+              <div>
+                <h5 className="card-title">{car.brand}</h5>
+                <h5 className="card-text">Type: {car.type}</h5>
+                <h5 className="card-text">
+                  Owner: {car.ownerFirstname + " " + car.ownerLastname}
+                </h5>
+              </div>
+              <ButtonToolbar>
+                <Button
+                  bsStyle="primary"
+                  bsSize="xsmall"
+                  href={"/cars/" + car.id}
+                >
+                  <TiInfoOutline color="white" size={15} /> Info
+                </Button>
+                <Button
+                  bsStyle="danger"
+                  bsSize="xsmall"
+                  onClick={() => this.erase(car.id)}
+                >
+                  <TiTrash color="white" size={15} /> Delete
+                </Button>
+              </ButtonToolbar>
+            </ListGroupItem>
+          ))}
+        </ListGroup>
+      );
+    } else
+      return (
+        <ListGroup>
+          {this.props.cars.map(
+            (car, index) =>
+              this.props.clientid == car.ownerID ? (
+                <ListGroupItem
+                  key={car.id}
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                  }}
+                >
+                  <div>
+                    <h5 className="card-title">{car.brand}</h5>
+                    <h5 className="card-text">Type: {car.type}</h5>
+                    <h5 className="card-text">
+                      Owner: {car.ownerFirstname + " " + car.ownerLastname}
+                    </h5>
+                  </div>
+                  <ButtonToolbar>
+                    <Button
+                      bsStyle="primary"
+                      bsSize="xsmall"
+                      href={"/cars/" + car.id}
+                    >
+                      <TiInfoOutline color="white" size={15} /> Info
+                    </Button>
+                    <Button
+                      bsStyle="danger"
+                      bsSize="xsmall"
+                      onClick={() => this.erase(car.id)}
+                    >
+                      <TiTrash color="white" size={15} /> Delete
+                    </Button>
+                  </ButtonToolbar>
+                </ListGroupItem>
+              ) : null
+          )}
+        </ListGroup>
+      );
   }
 }

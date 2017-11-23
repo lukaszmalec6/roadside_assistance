@@ -78,34 +78,30 @@ export default class Driver extends Component {
     );
   };
   render() {
-    console.log(this.props);
-    return (
-      <div>
-        <Jumbotron>
-          <ButtonToolbar>
-            <Button bsSize="small" bsStyle="primary" href="/drivers">
-              <TiArrowBackOutline color="white" />
-            </Button>
-            <Button
-              bsSize="small"
-              bsStyle="primary"
-              onClick={() => this.update()}
-            >
-              Update
-            </Button>
-          </ButtonToolbar>
-          <h4>Firstname: {this.props.driver.firstname}</h4>
-          <h4>Lastname: {this.props.driver.lastname}</h4>
-          <h4>Login: {this.props.driver.login}</h4>
-        </Jumbotron>
-        {this.state.fireUpdate ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-start"
-            }}
-          >
+    if (
+      this.props.permissions ||
+      this.props.clientid == this.props.match.params.id
+    ) {
+      return (
+        <div>
+          <Jumbotron>
+            <ButtonToolbar>
+              <Button bsSize="small" bsStyle="primary" href="/drivers">
+                <TiArrowBackOutline color="white" />
+              </Button>
+              <Button
+                bsSize="small"
+                bsStyle="primary"
+                onClick={() => this.update()}
+              >
+                Update
+              </Button>
+            </ButtonToolbar>
+            <h4>Firstname: {this.props.driver.firstname}</h4>
+            <h4>Lastname: {this.props.driver.lastname}</h4>
+            <h4>Login: {this.props.driver.login}</h4>
+          </Jumbotron>
+          {this.state.fireUpdate ? (
             <div
               style={{
                 display: "flex",
@@ -113,53 +109,69 @@ export default class Driver extends Component {
                 justifyContent: "flex-start"
               }}
             >
-              <span>Firstname: </span>
-              <input
-                onChange={event =>
-                  this.setState({ firstname: event.target.value })
-                }
-                type="text"
-                placeholder={this.props.driver.firstname}
-              />
-              <span>Lastname: </span>
-              <input
-                onChange={event =>
-                  this.setState({ lastname: event.target.value })
-                }
-                type="text"
-                placeholder={this.props.driver.lastname}
-              />
-              <span>Login: </span>
-              <input
-                onChange={event => this.setState({ login: event.target.value })}
-                type="text"
-                placeholder={this.props.driver.login}
-              />
-              {this.state.validationError ? (
-                <p
-                  style={{
-                    marginTop: "10px",
-                    color: "red",
-                    fontSize: "11px",
-                    textAlign: "center"
-                  }}
-                >
-                  Invalid data
-                </p>
-              ) : null}
-            </div>
-            <div style={{ margin: "10px" }}>
-              <Button
-                bsSize="small"
-                bsStyle="primary"
-                onClick={() => this.save()}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start"
+                }}
               >
-                Save
-              </Button>
+                <span>Firstname: </span>
+                <input
+                  onChange={event =>
+                    this.setState({ firstname: event.target.value })
+                  }
+                  type="text"
+                  placeholder={this.props.driver.firstname}
+                />
+                <span>Lastname: </span>
+                <input
+                  onChange={event =>
+                    this.setState({ lastname: event.target.value })
+                  }
+                  type="text"
+                  placeholder={this.props.driver.lastname}
+                />
+                <span>Login: </span>
+                <input
+                  onChange={event =>
+                    this.setState({ login: event.target.value })
+                  }
+                  type="text"
+                  placeholder={this.props.driver.login}
+                />
+                {this.state.validationError ? (
+                  <p
+                    style={{
+                      marginTop: "10px",
+                      color: "red",
+                      fontSize: "11px",
+                      textAlign: "center"
+                    }}
+                  >
+                    Invalid data
+                  </p>
+                ) : null}
+              </div>
+              <div style={{ margin: "10px" }}>
+                <Button
+                  bsSize="small"
+                  bsStyle="primary"
+                  onClick={() => this.save()}
+                >
+                  Save
+                </Button>
+              </div>
             </div>
-          </div>
-        ) : null}
-      </div>
-    );
+          ) : null}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>No permissions to see this</h1>
+        </div>
+      );
+    }
   }
 }

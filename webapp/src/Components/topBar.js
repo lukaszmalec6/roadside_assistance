@@ -11,15 +11,18 @@ export default class TopBar extends Component {
     this.setState({ client: JSON.parse(localStorage.getItem("client")) });
   }
   render() {
-    let { firstname, lastname } = this.state.client;
-    return (
-      <PageHeader style={styles.pageHeader}>
-        Welcome back, <small>Logged as: {firstname + " " + lastname}</small>
-      </PageHeader>
-    );
+    if (!this.state.client) {
+      return <div />;
+    } else {
+      let { firstname, lastname } = this.state.client;
+      return (
+        <PageHeader style={styles.pageHeader}>
+          Welcome back, <small>Logged as: {firstname + " " + lastname}</small>
+        </PageHeader>
+      );
+    }
   }
 }
-
 const styles = {
   pageHeader: {
     paddingLeft: 20
